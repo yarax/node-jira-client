@@ -1003,6 +1003,30 @@ export default class JiraApi {
     return this.doRequest(header);
   }
 
+   /** Get ids of worklogs modified since
+   * [Jira Doc](https://docs.atlassian.com/jira/REST/cloud/#api/2/worklog-getWorklogsForIds)
+   * @name getWorklogs
+   * @function
+   * @param {Array<number>} ids - list of worklogs ids
+   * @param {string} expand - ptional comma separated list of parameters to expand: properties (provides worklog properties).
+   */
+  getWorklogs(ids, expand) {
+    const header = {
+      uri: this.makeUri({
+        pathname: '/worklog/list',
+        query: { expand }
+      }),
+      method: 'POST',
+      body: {
+        ids: ids
+      },
+      'Content-Type': 'application/json',
+      json: true,
+    };
+
+    return this.doRequest(header);
+  }
+
   /** Delete worklog from issue
    * [Jira Doc](https://docs.atlassian.com/jira/REST/latest/#d2e1673)
    * @name deleteWorklog
