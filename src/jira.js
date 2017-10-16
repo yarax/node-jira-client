@@ -299,6 +299,19 @@ export default class JiraApi {
     })));
   }
 
+    /**
+   * @name findIssue
+   * @function
+   * Find an issue in jira
+   * [Jira Doc](http://docs.atlassian.com/jira/REST/latest/#id290709)
+   * @param {string} issueNumber - The issue number to search for including the project key
+   */
+  getIssue(issueNumber) {
+    return this.doRequest(this.makeRequestHeader(this.makeUri({
+      pathname: `/issue/${issueNumber}`
+    })));
+  }
+
   /**
    * @name getUnresolvedIssueCount
    * @function
